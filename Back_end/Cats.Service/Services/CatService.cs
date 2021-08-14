@@ -9,7 +9,7 @@ namespace Cats.Service.Services
     public class CatService : ICatService
     {
         private static readonly HttpClient client = new HttpClient();
-        private const string connectionString = "https://api.thecatapi.com/v1/breeds/search?q=sib";
+        private const string connectionString = "https://api.thecatapi.com/v1/breeds/search?q=";
 
         public CatService()
         {
@@ -17,7 +17,7 @@ namespace Cats.Service.Services
         }
 
         /// <summary>
-        /// returns all breeds which are prefixed with the input
+        /// Returns all breeds which are prefixed with the input
         /// </summary>
         /// <param name="prefix">Prefix of breed name</param>
         /// <returns></returns>

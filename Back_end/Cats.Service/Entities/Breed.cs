@@ -41,76 +41,76 @@ namespace Cats.Service.Entities
         public string LifeSpan { get; set; }
 
         [JsonPropertyName("indoor")]
-        public int Indoor { get; set; }
+        public int? Indoor { get; set; }
 
         [JsonPropertyName("lap")]
-        public int Lap { get; set; }
+        public int? Lap { get; set; }
 
         [JsonPropertyName("alt_names")]
         public string AltNames { get; set; }
 
         [JsonPropertyName("adaptability")]
-        public int Adaptability { get; set; }
+        public int? Adaptability { get; set; }
 
         [JsonPropertyName("affection_level")]
-        public int AffectionLevel { get; set; }
+        public int? AffectionLevel { get; set; }
 
         [JsonPropertyName("child_friendly")]
-        public int ChildFriendly { get; set; }
+        public int? ChildFriendly { get; set; }
 
         [JsonPropertyName("dog_friendly")]
-        public int DogFriendly { get; set; }
+        public int? DogFriendly { get; set; }
 
         [JsonPropertyName("energy_level")]
-        public int EnergyLevel { get; set; }
+        public int? EnergyLevel { get; set; }
 
         [JsonPropertyName("grooming")]
-        public int Grooming { get; set; }
+        public int? Grooming { get; set; }
 
         [JsonPropertyName("health_issues")]
-        public int HealthIssues { get; set; }
+        public int? HealthIssues { get; set; }
 
         [JsonPropertyName("intelligence")]
-        public int Intelligence { get; set; }
+        public int? Intelligence { get; set; }
 
         [JsonPropertyName("shedding_level")]
-        public int SheddingLevel { get; set; }
+        public int? SheddingLevel { get; set; }
 
         [JsonPropertyName("social_needs")]
-        public int SocialNeeds { get; set; }
+        public int? SocialNeeds { get; set; }
 
         [JsonPropertyName("stranger_friendly")]
-        public int StrangerFriendly { get; set; }
+        public int? StrangerFriendly { get; set; }
 
         [JsonPropertyName("vocalisation")]
-        public int Vocalisation { get; set; }
+        public int? Vocalisation { get; set; }
 
         [JsonPropertyName("experimental")]
-        public int Experimental { get; set; }
+        public int? Experimental { get; set; }
 
         [JsonPropertyName("hairless")]
-        public int Hairless { get; set; }
+        public int? Hairless { get; set; }
 
         [JsonPropertyName("natural")]
-        public int Natural { get; set; }
+        public int? Natural { get; set; }
 
         [JsonPropertyName("rare")]
-        public int Rare { get; set; }
+        public int? Rare { get; set; }
 
         [JsonPropertyName("rex")]
-        public int Rex { get; set; }
+        public int? Rex { get; set; }
 
         [JsonPropertyName("suppressed_tail")]
-        public int SuppressedTail { get; set; }
+        public int? SuppressedTail { get; set; }
 
         [JsonPropertyName("short_legs")]
-        public int ShortLegs { get; set; }
+        public int? ShortLegs { get; set; }
 
         [JsonPropertyName("wikipedia_url")]
         public string WikipediaUrl { get; set; }
 
         [JsonPropertyName("hypoallergenic")]
-        public int Hypoallergenic { get; set; }
+        public int? Hypoallergenic { get; set; }
 
         [JsonPropertyName("reference_image_id")]
         public string ReferenceImageId { get; set; }

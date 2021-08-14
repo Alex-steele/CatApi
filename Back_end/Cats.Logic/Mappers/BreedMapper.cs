@@ -13,8 +13,8 @@ namespace Cats.Logic.Mappers
             {
                 Weight = new WeightModel
                 {
-                    Imperial = x.Weight.Imperial,
-                    Metric = x.Weight.Metric
+                    Imperial = x.Weight?.Imperial,
+                    Metric = x.Weight?.Metric
                 },
                 Id = x.Id,
                 Name = x.Name,
@@ -55,6 +55,6 @@ namespace Cats.Logic.Mappers
             }).ToArray();
         }
 
-        private static bool MapIntToBool(int input) => input == 1;
+        private static bool? MapIntToBool(int? input) => input == null ? (bool?) null : input == 1;
     }
 }
