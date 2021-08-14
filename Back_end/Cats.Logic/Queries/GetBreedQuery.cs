@@ -3,6 +3,8 @@ using Cats.Logic.Models;
 using Cats.Logic.Queries.Interfaces;
 using Cats.Service.Services.Interfaces;
 using System.Threading.Tasks;
+using Cats.Logic.Models.QueryModels;
+using Cats.Logic.Wrappers;
 
 namespace Cats.Logic.Queries
 {
@@ -19,11 +21,11 @@ namespace Cats.Logic.Queries
             this.mapper = mapper;
         }
 
-        public async Task<BreedModel[]> ExecuteAsync(string model)
+        public async Task<ResultWrapper<BreedModel[]>> ExecuteAsync(GetBreedsModel model)
         {
-            var breeds = await catService.GetBreeds(model);
+            var breeds = await catService.GetBreeds(model.Prefix);
 
-            return mapper.Map(breeds);
+            return ResultWrapper<BreedModel[]>.Success(mapper.Map(breeds));
         }
     }
 }
