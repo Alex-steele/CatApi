@@ -41,10 +41,10 @@ namespace Cats.Service.Entities
         public string LifeSpan { get; set; }
 
         [JsonPropertyName("indoor")]
-        public bool Indoor { get; set; }
+        public int Indoor { get; set; }
 
         [JsonPropertyName("lap")]
-        public bool Lap { get; set; }
+        public int Lap { get; set; }
 
         [JsonPropertyName("alt_names")]
         public string AltNames { get; set; }
@@ -86,31 +86,31 @@ namespace Cats.Service.Entities
         public int Vocalisation { get; set; }
 
         [JsonPropertyName("experimental")]
-        public bool Experimental { get; set; }
+        public int Experimental { get; set; }
 
         [JsonPropertyName("hairless")]
-        public bool Hairless { get; set; }
+        public int Hairless { get; set; }
 
         [JsonPropertyName("natural")]
-        public bool Natural { get; set; }
+        public int Natural { get; set; }
 
         [JsonPropertyName("rare")]
-        public bool Rare { get; set; }
+        public int Rare { get; set; }
 
         [JsonPropertyName("rex")]
-        public bool Rex { get; set; }
+        public int Rex { get; set; }
 
         [JsonPropertyName("suppressed_tail")]
-        public bool SuppressedTail { get; set; }
+        public int SuppressedTail { get; set; }
 
         [JsonPropertyName("short_legs")]
-        public bool ShortLegs { get; set; }
+        public int ShortLegs { get; set; }
 
         [JsonPropertyName("wikipedia_url")]
         public string WikipediaUrl { get; set; }
 
         [JsonPropertyName("hypoallergenic")]
-        public bool Hypoallergenic { get; set; }
+        public int Hypoallergenic { get; set; }
 
         [JsonPropertyName("reference_image_id")]
         public string ReferenceImageId { get; set; }

@@ -16,9 +16,14 @@ namespace Cats.Service.Services
             client.DefaultRequestHeaders.Add("x-api-key", "2132a5a5-4070-4671-b1ed-576bd9130921");
         }
 
-        public async Task<Breed[]> GetBreeds(string id)
+        /// <summary>
+        /// returns all breeds which are prefixed with the input
+        /// </summary>
+        /// <param name="prefix">Prefix of breed name</param>
+        /// <returns></returns>
+        public async Task<Breed[]> GetBreeds(string prefix)
         {
-            var serializedBreeds = await client.GetStreamAsync(connectionString + id);
+            var serializedBreeds = await client.GetStreamAsync(connectionString + prefix);
             var breeds = await JsonSerializer.DeserializeAsync<Breed[]>(serializedBreeds);
 
             return breeds;
