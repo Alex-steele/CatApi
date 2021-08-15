@@ -61,6 +61,8 @@ namespace Cats.WebAPI
 
             app.UseCors("CorsPolicy");
 
+            app.UseExceptionHandler("/error");
+
             app.UseHttpsRedirection();
 
             app.UseSwagger();
