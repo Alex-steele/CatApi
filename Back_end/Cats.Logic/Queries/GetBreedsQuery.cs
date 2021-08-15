@@ -1,4 +1,5 @@
-﻿using Cats.Logic.Mappers.Interfaces;
+﻿using System.Linq;
+using Cats.Logic.Mappers.Interfaces;
 using Cats.Logic.Models;
 using Cats.Logic.Queries.Interfaces;
 using Cats.Logic.Wrappers;
@@ -33,7 +34,9 @@ namespace Cats.Logic.Queries
                 return ResultWrapper<BreedModel[]>.ValidationError(validationResult); 
             }
 
-            var breeds = await catService.GetBreeds(searchTerm);
+            var breeds = (await catService.GetBreeds(searchTerm))
+                .OrderBy(x => x.Name.ToLower().StartsWith(searchTerm) ? 1 : 2)
+                .ToArray();
 
             return breeds.Length == 0 
                 ? ResultWrapper<BreedModel[]>.NotFound 
