@@ -1,6 +1,8 @@
-﻿using Cats.Service.Services;
+﻿using Cats.Service.Decorators;
+using Cats.Service.Services;
 using Cats.Service.Services.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
+using Serilog;
 
 namespace Cats.Service.Configuration
 {
@@ -9,6 +11,8 @@ namespace Cats.Service.Configuration
         public static IServiceCollection ConfigureServiceLayerServices(this IServiceCollection services)
         {
             services.AddTransient<ICatService, CatService>();
+            services.Decorate<ICatService>((inner, provider) =>
+                new CatServiceLoggingDecorator(inner, Log.Logger));
 
             return services;
         }

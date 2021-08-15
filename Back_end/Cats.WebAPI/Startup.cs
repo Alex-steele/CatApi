@@ -1,19 +1,13 @@
-using System;
-using System.IO;
-using System.Reflection;
 using Cats.Logic.Configuration;
-using Cats.Logic.Mappers;
-using Cats.Logic.Mappers.Interfaces;
-using Cats.Logic.Queries;
-using Cats.Logic.Queries.Interfaces;
 using Cats.Service.Configuration;
-using Cats.Service.Services;
-using Cats.Service.Services.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System;
+using System.IO;
+using System.Reflection;
 
 namespace Cats.WebAPI
 {

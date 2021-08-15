@@ -5,6 +5,6 @@ namespace Cats.Service.Services.Interfaces
 {
     public interface ICatService
     {
-        Task<Breed[]> GetBreeds(string id);
+        Task<Breed[]> GetBreeds(string searchTerm);
     }
 }

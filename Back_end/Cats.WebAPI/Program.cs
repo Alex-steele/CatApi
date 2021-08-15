@@ -1,6 +1,9 @@
 using System;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
+using Serilog;
+
 
 namespace Cats.WebAPI
 {
@@ -8,18 +11,32 @@ namespace Cats.WebAPI
     {
         public static void Main(string[] args)
         {
+            var config = new ConfigurationBuilder()
+                .AddJsonFile("appsettings.json")
+                .Build();
+
+            Log.Logger = new LoggerConfiguration()
+                .ReadFrom.Configuration(config)
+                .CreateLogger();
+
             try
             {
+                Log.Information("Application Starting.");
                 CreateHostBuilder(args).Build().Run();
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex);
+                Log.Fatal(ex, "The application failed to start.");
+            }
+            finally
+            {
+                Log.CloseAndFlush();
             }
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
+                .UseSerilog()
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();

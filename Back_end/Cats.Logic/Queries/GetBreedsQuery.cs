@@ -35,7 +35,7 @@ namespace Cats.Logic.Queries
             }
 
             var breeds = (await catService.GetBreeds(searchTerm))
-                .OrderBy(x => x.Name.ToLower().StartsWith(searchTerm) ? 1 : 2)
+                .OrderBy(x => x.Name.ToLower().StartsWith(searchTerm.ToLower()) ? 1 : 2)
                 .ToArray();
 
             return breeds.Length == 0 
