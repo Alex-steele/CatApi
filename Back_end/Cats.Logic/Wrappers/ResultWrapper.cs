@@ -1,4 +1,5 @@
 ﻿using Cats.Logic.Wrappers.Enums;
+using FluentValidation.Results;
 
 namespace Cats.Logic.Wrappers
 {
@@ -15,6 +16,12 @@ namespace Cats.Logic.Wrappers
             Result = Result.Success;
         }
 
+        private ResultWrapper(ValidationResult validation)
+        {
+            Validation = validation;
+            Result = Result.ValidationError;
+        }
+
         /// <summary>
         /// Create a new ResultWrapper as success
         /// </summary>
@@ -27,8 +34,15 @@ namespace Cats.Logic.Wrappers
         /// </summary>
         public static ResultWrapper<T> NotFound => new ResultWrapper<T>(Result.NotFound);
 
-        public Result Result { get; set; }
+        /// <summary>
+        /// Create a new ResultWrapper as ValidationError
+        /// </summary>
+        /// <param name="validation">Validation result containing validation errors</param>
+        /// <returns></returns>
+        public static ResultWrapper<T> ValidationError(ValidationResult validation) => new ResultWrapper<T>(validation);
 
-        public T Payload { get; set; }
+        public Result Result { get; }
+        public T Payload { get; }
+        public ValidationResult Validation { get; }
     }
 }

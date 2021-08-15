@@ -11,11 +11,11 @@ namespace Cats.WebAPI.Controllers
     [Route("[controller]")]
     public class CatsController : ControllerBase
     {
-        private readonly IGetBreedQuery getBreedQuery;
+        private readonly IGetBreedsQuery getBreedsQuery;
 
-        public CatsController(IGetBreedQuery getBreedQuery)
+        public CatsController(IGetBreedsQuery getBreedsQuery)
         {
-            this.getBreedQuery = getBreedQuery;
+            this.getBreedsQuery = getBreedsQuery;
         }
 
         /// <summary>
@@ -30,7 +30,7 @@ namespace Cats.WebAPI.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> Get(string searchTerm)
         {
-            var result = await getBreedQuery.ExecuteAsync(searchTerm);
+            var result = await getBreedsQuery.ExecuteAsync(searchTerm);
 
             return ProcessResult(result);
         }
@@ -41,6 +41,7 @@ namespace Cats.WebAPI.Controllers
             {
                 Result.Success => Ok(resultWrapper.Payload),
                 Result.NotFound => NotFound(),
+                Result.ValidationError => new BadRequestObjectResult(resultWrapper.Validation),
                 _ => StatusCode(StatusCodes.Status500InternalServerError)
             };
         }

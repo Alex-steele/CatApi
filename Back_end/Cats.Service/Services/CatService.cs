@@ -10,12 +10,12 @@ namespace Cats.Service.Services
     public class CatService : ICatService
     {
         private static readonly HttpClient Client = new HttpClient();
-        private IConfigurationRoot ConfigRoot;
+        private readonly IConfigurationRoot configRoot;
 
         public CatService(IConfiguration configRoot)
         {
-            ConfigRoot = (IConfigurationRoot) configRoot;
-            Client.DefaultRequestHeaders.Add("x-api-key", ConfigRoot["Keys:ApiKey"]);
+            this.configRoot = (IConfigurationRoot) configRoot;
+            Client.DefaultRequestHeaders.Add("x-api-key", this.configRoot["Keys:ApiKey"]);
         }
 
         /// <summary>
@@ -25,7 +25,7 @@ namespace Cats.Service.Services
         /// <returns>All breeds containing the search term</returns>
         public async Task<Breed[]> GetBreeds(string searchTerm)
         {
-            var serializedBreeds = await Client.GetStreamAsync(ConfigRoot.GetConnectionString("BreedSearchUrl") + searchTerm);
+            var serializedBreeds = await Client.GetStreamAsync(configRoot.GetConnectionString("BreedSearchUrl") + searchTerm);
             var breeds = await JsonSerializer.DeserializeAsync<Breed[]>(serializedBreeds);
 
             return breeds;

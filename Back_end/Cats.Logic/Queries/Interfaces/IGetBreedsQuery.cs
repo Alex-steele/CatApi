@@ -4,8 +4,8 @@ using System.Threading.Tasks;
 
 namespace Cats.Logic.Queries.Interfaces
 {
-    public interface IGetBreedQuery
+    public interface IGetBreedsQuery
     {
-        Task<ResultWrapper<BreedModel[]>> ExecuteAsync(string prefix);
+        Task<ResultWrapper<BreedModel[]>> ExecuteAsync(string searchTerm);
     }
 }
