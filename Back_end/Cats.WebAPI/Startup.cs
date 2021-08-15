@@ -1,10 +1,12 @@
 using System;
 using System.IO;
 using System.Reflection;
+using Cats.Logic.Configuration;
 using Cats.Logic.Mappers;
 using Cats.Logic.Mappers.Interfaces;
 using Cats.Logic.Queries;
 using Cats.Logic.Queries.Interfaces;
+using Cats.Service.Configuration;
 using Cats.Service.Services;
 using Cats.Service.Services.Interfaces;
 using Microsoft.AspNetCore.Builder;
@@ -36,10 +38,18 @@ namespace Cats.WebAPI
 
             });
 
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy",
+                    builder => builder
+                        .AllowAnyMethod()
+                        .AllowCredentials()
+                        .SetIsOriginAllowed((host) => true)
+                        .AllowAnyHeader());
+            });
 
-            services.AddSingleton<ICatService, CatService>();
-            services.AddSingleton<IGetBreedQuery, GetBreedQuery>();
-            services.AddSingleton<IBreedMapper, BreedMapper>();
+            services.ConfigureServiceLayerServices();
+            services.ConfigureLogicLayerServices();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -48,6 +58,8 @@ namespace Cats.WebAPI
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseCors("CorsPolicy");
 
             app.UseHttpsRedirection();
 
