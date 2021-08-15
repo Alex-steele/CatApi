@@ -1,3 +1,6 @@
+using System;
+using System.IO;
+using System.Reflection;
 using Cats.Logic.Mappers;
 using Cats.Logic.Mappers.Interfaces;
 using Cats.Logic.Queries;
@@ -25,6 +28,15 @@ namespace Cats.WebAPI
         {
             services.AddControllers();
 
+            services.AddSwaggerGen(o =>
+            {
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                o.IncludeXmlComments(xmlPath);
+
+            });
+
+
             services.AddSingleton<ICatService, CatService>();
             services.AddSingleton<IGetBreedQuery, GetBreedQuery>();
             services.AddSingleton<IBreedMapper, BreedMapper>();
@@ -38,6 +50,13 @@ namespace Cats.WebAPI
             }
 
             app.UseHttpsRedirection();
+
+            app.UseSwagger();
+
+            app.UseSwaggerUI(o =>
+            {
+                o.SwaggerEndpoint("/swagger/v1/swagger.json", "CatsAPI");
+            });
 
             app.UseRouting();
 
