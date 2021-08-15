@@ -20,9 +20,9 @@ namespace Cats.Logic.Queries
             this.mapper = mapper;
         }
 
-        public async Task<ResultWrapper<BreedModel[]>> ExecuteAsync(string prefix)
+        public async Task<ResultWrapper<BreedModel[]>> ExecuteAsync(string searchTerm)
         {
-            var breeds = await catService.GetBreeds(prefix);
+            var breeds = await catService.GetBreeds(searchTerm);
 
             return ResultWrapper<BreedModel[]>.Success(mapper.Map(breeds));
         }

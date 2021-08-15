@@ -19,18 +19,18 @@ namespace Cats.WebAPI.Controllers
         }
 
         /// <summary>
-        /// Gets breeds by prefix
+        /// Gets breeds by search term
         /// </summary>
-        /// <param name="prefix">Prefix of the breed name</param>
-        /// <returns>All breeds prefixed with the input</returns>
-        /// <response code="200">Returns all breeds prefixed with the input</response>
-        /// <response code="404">If there are no breeds prefixed by the input</response>
-        [HttpGet("{prefix}")]
+        /// <param name="searchTerm">Term contained in the breed name</param>
+        /// <returns>All breeds containing the search term</returns>
+        /// <response code="200">Returns all breeds containing the search term</response>
+        /// <response code="404">If there are no breeds containing the search term</response>
+        [HttpGet("{searchTerm}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> Get(string prefix)
+        public async Task<IActionResult> Get(string searchTerm)
         {
-            var result = await getBreedQuery.ExecuteAsync(prefix);
+            var result = await getBreedQuery.ExecuteAsync(searchTerm);
 
             return ProcessResult(result);
         }

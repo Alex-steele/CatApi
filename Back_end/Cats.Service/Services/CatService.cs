@@ -3,27 +3,29 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using Cats.Service.Entities;
 using Cats.Service.Services.Interfaces;
+using Microsoft.Extensions.Configuration;
 
 namespace Cats.Service.Services
 {
     public class CatService : ICatService
     {
-        private static readonly HttpClient client = new HttpClient();
-        private const string connectionString = "https://api.thecatapi.com/v1/breeds/search?q=";
+        private static readonly HttpClient Client = new HttpClient();
+        private IConfigurationRoot ConfigRoot;
 
-        public CatService()
+        public CatService(IConfiguration configRoot)
         {
-            client.DefaultRequestHeaders.Add("x-api-key", "2132a5a5-4070-4671-b1ed-576bd9130921");
+            ConfigRoot = (IConfigurationRoot) configRoot;
+            Client.DefaultRequestHeaders.Add("x-api-key", ConfigRoot["Keys:ApiKey"]);
         }
 
         /// <summary>
-        /// Returns all breeds which are prefixed with the input
+        /// Gets breeds by search term
         /// </summary>
-        /// <param name="prefix">Prefix of breed name</param>
-        /// <returns></returns>
-        public async Task<Breed[]> GetBreeds(string prefix)
+        /// <param name="searchTerm">Term contained in the breed name</param>
+        /// <returns>All breeds containing the search term</returns>
+        public async Task<Breed[]> GetBreeds(string searchTerm)
         {
-            var serializedBreeds = await client.GetStreamAsync(connectionString + prefix);
+            var serializedBreeds = await Client.GetStreamAsync(ConfigRoot.GetConnectionString("BreedSearchUrl") + searchTerm);
             var breeds = await JsonSerializer.DeserializeAsync<Breed[]>(serializedBreeds);
 
             return breeds;
