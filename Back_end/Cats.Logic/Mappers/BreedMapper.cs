@@ -11,26 +11,15 @@ namespace Cats.Logic.Mappers
         {
             return breeds.Select(x => new BreedModel
             {
-                Weight = new WeightModel
-                {
-                    Imperial = x.Weight?.Imperial,
-                    Metric = x.Weight?.Metric
-                },
+                Weight = x.Weight?.Metric,
                 Id = x.Id,
                 Name = x.Name,
-                CfaUrl = x.CfaUrl,
-                VetstreetUrl = x.VetstreetUrl,
-                VcahospitalsUrl = x.VcahospitalsUrl,
                 Temperament = x.Temperament,
                 Origin = x.Origin,
-                CountryCodes = x.CountryCodes,
-                CountryCode = x.CountryCode,
                 Description = x.Description,
                 LifeSpan = x.LifeSpan,
                 Indoor = MapIntToBool(x.Indoor),
                 Lap = MapIntToBool(x.Lap),
-                AltNames = x.AltNames,
-                Adaptability = x.Adaptability,
                 AffectionLevel = x.AffectionLevel,
                 ChildFriendly = x.ChildFriendly,
                 DogFriendly = x.DogFriendly,
@@ -40,15 +29,9 @@ namespace Cats.Logic.Mappers
                 Intelligence = x.Intelligence,
                 SheddingLevel = x.SheddingLevel,
                 SocialNeeds = x.SocialNeeds,
-                StrangerFriendly = x.StrangerFriendly,
                 Vocalisation = x.Vocalisation,
-                Experimental = MapIntToBool(x.Experimental),
                 Hairless = MapIntToBool(x.Hairless),
-                Natural = MapIntToBool(x.Natural),
                 Rare = MapIntToBool(x.Rare),
-                Rex = MapIntToBool(x.Rex),
-                SuppressedTail = MapIntToBool(x.SuppressedTail),
-                ShortLegs = MapIntToBool(x.ShortLegs),
                 WikipediaUrl = x.WikipediaUrl,
                 Hypoallergenic = MapIntToBool(x.Hypoallergenic),
                 ReferenceImageId = x.ReferenceImageId

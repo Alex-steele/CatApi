@@ -22,8 +22,8 @@ namespace Cats.WebAPI.Controllers
         /// Gets breeds by search term
         /// </summary>
         /// <param name="searchTerm">Term contained in the breed name</param>
-        /// <returns>All breeds containing the search term</returns>
-        /// <response code="200">Returns all breeds containing the search term</response>
+        /// <returns>All breeds containing the search term, with breeds prefixed by the search term at the top</returns>
+        /// <response code="200">Returns all breeds containing the search term, with breeds prefixed by the search term at the top</response>
         /// <response code="404">If there are no breeds containing the search term</response>
         [HttpGet("{searchTerm}")]
         [ProducesResponseType(StatusCodes.Status200OK)]

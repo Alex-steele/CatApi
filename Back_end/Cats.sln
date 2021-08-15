@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cats.Logic", "Cats.Logic\Ca
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cats.Service", "Cats.Service\Cats.Service.csproj", "{D665C9CB-EE05-41D0-AB7F-A4ACD69F5FF6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cats.Logic.Tests", "Cats.Logic.Tests\Cats.Logic.Tests.csproj", "{147CF854-FC44-4EA9-948F-75D3BE01969A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cats.Service.Tests", "Cats.Service.Tests\Cats.Service.Tests.csproj", "{FD643CB5-831B-458E-A8BD-13A10ADDDB7D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +31,14 @@ Global
 		{D665C9CB-EE05-41D0-AB7F-A4ACD69F5FF6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D665C9CB-EE05-41D0-AB7F-A4ACD69F5FF6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D665C9CB-EE05-41D0-AB7F-A4ACD69F5FF6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{147CF854-FC44-4EA9-948F-75D3BE01969A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{147CF854-FC44-4EA9-948F-75D3BE01969A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{147CF854-FC44-4EA9-948F-75D3BE01969A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{147CF854-FC44-4EA9-948F-75D3BE01969A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FD643CB5-831B-458E-A8BD-13A10ADDDB7D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD643CB5-831B-458E-A8BD-13A10ADDDB7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD643CB5-831B-458E-A8BD-13A10ADDDB7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD643CB5-831B-458E-A8BD-13A10ADDDB7D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

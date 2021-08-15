@@ -2,25 +2,15 @@
 {
     public class BreedModel
     {
-        public WeightModel Weight { get; set; }
+        public string Weight { get; set; }
 
         public string Id { get; set; }
 
         public string Name { get; set; }
 
-        public string CfaUrl { get; set; }
-
-        public string VetstreetUrl { get; set; }
-
-        public string VcahospitalsUrl { get; set; }
-
         public string Temperament { get; set; }
 
         public string Origin { get; set; }
-
-        public string CountryCodes { get; set; }
-
-        public string CountryCode { get; set; }
 
         public string Description { get; set; }
 
@@ -29,10 +19,6 @@
         public bool? Indoor { get; set; }
 
         public bool? Lap { get; set; }
-
-        public string AltNames { get; set; }
-
-        public int? Adaptability { get; set; }
 
         public int? AffectionLevel { get; set; }
 
@@ -52,23 +38,11 @@
 
         public int? SocialNeeds { get; set; }
 
-        public int? StrangerFriendly { get; set; }
-
         public int? Vocalisation { get; set; }
-
-        public bool? Experimental { get; set; }
 
         public bool? Hairless { get; set; }
 
-        public bool? Natural { get; set; }
-
         public bool? Rare { get; set; }
-
-        public bool? Rex { get; set; }
-
-        public bool? SuppressedTail { get; set; }
-
-        public bool? ShortLegs { get; set; }
 
         public string WikipediaUrl { get; set; }
 

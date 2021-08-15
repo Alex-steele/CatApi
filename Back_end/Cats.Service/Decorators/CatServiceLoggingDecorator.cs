@@ -24,7 +24,7 @@ namespace Cats.Service.Decorators
             sw.Stop();
             var elapsedMillis = sw.ElapsedMilliseconds;
 
-            logger.Information($"Retrieved breeds containing search term '{searchTerm}' - Elapsed ms: {elapsedMillis}");
+            logger.Information($"Attempted to retrieve breeds containing search term '{searchTerm}' - Elapsed ms: {elapsedMillis}");
 
             return breeds;
         }
