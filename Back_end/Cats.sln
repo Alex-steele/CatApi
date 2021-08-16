@@ -3,15 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31424.327
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cats.WebAPI", "Cats.WebAPI\Cats.WebAPI.csproj", "{F3A81DA5-D212-41AF-810F-FAC0E5B9A503}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cats.WebAPI", "Cats.WebAPI\Cats.WebAPI.csproj", "{F3A81DA5-D212-41AF-810F-FAC0E5B9A503}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cats.Logic", "Cats.Logic\Cats.Logic.csproj", "{58AD39FE-B171-4B9D-9126-CB83DF2F82F3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cats.Logic", "Cats.Logic\Cats.Logic.csproj", "{58AD39FE-B171-4B9D-9126-CB83DF2F82F3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cats.Service", "Cats.Service\Cats.Service.csproj", "{D665C9CB-EE05-41D0-AB7F-A4ACD69F5FF6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cats.Service", "Cats.Service\Cats.Service.csproj", "{D665C9CB-EE05-41D0-AB7F-A4ACD69F5FF6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cats.Logic.Tests", "Cats.Logic.Tests\Cats.Logic.Tests.csproj", "{147CF854-FC44-4EA9-948F-75D3BE01969A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cats.Logic.Tests", "Cats.Logic.Tests\Cats.Logic.Tests.csproj", "{147CF854-FC44-4EA9-948F-75D3BE01969A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cats.Service.Tests", "Cats.Service.Tests\Cats.Service.Tests.csproj", "{FD643CB5-831B-458E-A8BD-13A10ADDDB7D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cats.Service.Tests", "Cats.Service.Tests\Cats.Service.Tests.csproj", "{FD643CB5-831B-458E-A8BD-13A10ADDDB7D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cats.WebAPI.Integration.tests", "Cats.WebAPI.Integration.tests\Cats.WebAPI.Integration.tests.csproj", "{FB85FE59-110B-4F84-ADEB-036FA3B08B91}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{FD643CB5-831B-458E-A8BD-13A10ADDDB7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FD643CB5-831B-458E-A8BD-13A10ADDDB7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FD643CB5-831B-458E-A8BD-13A10ADDDB7D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FB85FE59-110B-4F84-ADEB-036FA3B08B91}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB85FE59-110B-4F84-ADEB-036FA3B08B91}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB85FE59-110B-4F84-ADEB-036FA3B08B91}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB85FE59-110B-4F84-ADEB-036FA3B08B91}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

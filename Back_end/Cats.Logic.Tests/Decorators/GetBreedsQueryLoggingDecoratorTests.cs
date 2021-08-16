@@ -30,7 +30,7 @@ namespace Cats.Logic.Tests.Decorators
         public async Task InnerQuery_ReturnsValidationError_LogsCorrectMessage()
         {
             //Arrange
-            var searchTerm = "Test";
+            const string searchTerm = "Test";
 
             A.CallTo(() => fakeInnerQuery.ExecuteAsync(searchTerm))
                 .Returns(ResultWrapper<BreedModel[]>.ValidationError(new ValidationResult
@@ -50,7 +50,7 @@ namespace Cats.Logic.Tests.Decorators
         public async Task InnerQuery_ReturnsNotFound_LogsCorrectMessage()
         {
             //Arrange
-            var searchTerm = "Test";
+            const string searchTerm = "Test";
 
             A.CallTo(() => fakeInnerQuery.ExecuteAsync(searchTerm))
                 .Returns(ResultWrapper<BreedModel[]>.NotFound);
@@ -67,7 +67,7 @@ namespace Cats.Logic.Tests.Decorators
         public async Task InnerQuery_ReturnsSuccess_LogsCorrectMessage()
         {
             //Arrange
-            var searchTerm = "Test";
+            const string searchTerm = "Test";
 
             var innerQueryPayload = new[]
             {

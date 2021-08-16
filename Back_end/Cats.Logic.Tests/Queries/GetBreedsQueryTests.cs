@@ -1,16 +1,13 @@
-﻿using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using Cats.Logic.Mappers;
-using Cats.Logic.Mappers.Interfaces;
-using Cats.Logic.Queries;
+﻿using Cats.Logic.Queries;
 using Cats.Logic.Validators.Interfaces;
 using Cats.Logic.Wrappers.Enums;
 using Cats.Service.Entities;
 using Cats.Service.Services.Interfaces;
-using NUnit.Framework;
 using FakeItEasy;
 using FluentValidation.Results;
+using NUnit.Framework;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Cats.Logic.Tests.Queries
 {
@@ -18,7 +15,6 @@ namespace Cats.Logic.Tests.Queries
     {
         private IGetBreedsValidator fakeValidator;
         private ICatService fakeCatService;
-        private IBreedMapper mapper;
         private GetBreedsQuery sut;
 
         [SetUp]
@@ -26,9 +22,8 @@ namespace Cats.Logic.Tests.Queries
         {
             fakeValidator = A.Fake<IGetBreedsValidator>();
             fakeCatService = A.Fake<ICatService>();
-            mapper = new BreedMapper();
 
-            sut = new GetBreedsQuery(fakeValidator, fakeCatService, mapper);
+            sut = new GetBreedsQuery(fakeValidator, fakeCatService);
         }
 
         [Test]
@@ -40,7 +35,7 @@ namespace Cats.Logic.Tests.Queries
             A.CallTo(() => fakeValidator.ValidateAsync(A<string>.Ignored, A<CancellationToken>.Ignored))
                 .Returns(new ValidationResult
                 {
-                    Errors = {new ValidationFailure("Test", "Error")}
+                    Errors = { new ValidationFailure("Test", "Error") }
                 });
 
             //Act

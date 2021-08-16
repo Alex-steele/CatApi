@@ -1,11 +1,11 @@
-﻿using System.Linq;
-using Cats.Logic.Mappers.Interfaces;
+﻿using Cats.Logic.Mappers;
 using Cats.Logic.Models;
 using Cats.Logic.Queries.Interfaces;
+using Cats.Logic.Validators.Interfaces;
 using Cats.Logic.Wrappers;
 using Cats.Service.Services.Interfaces;
+using System.Linq;
 using System.Threading.Tasks;
-using Cats.Logic.Validators.Interfaces;
 
 namespace Cats.Logic.Queries
 {
@@ -13,16 +13,13 @@ namespace Cats.Logic.Queries
     {
         private readonly IGetBreedsValidator validator;
         private readonly ICatService catService;
-        private readonly IBreedMapper mapper;
 
         public GetBreedsQuery(
             IGetBreedsValidator validator,
-            ICatService catService,
-            IBreedMapper mapper)
+            ICatService catService)
         {
             this.validator = validator;
             this.catService = catService;
-            this.mapper = mapper;
         }
 
         public async Task<ResultWrapper<BreedModel[]>> ExecuteAsync(string searchTerm)
@@ -31,16 +28,16 @@ namespace Cats.Logic.Queries
 
             if (!validationResult.IsValid)
             {
-                return ResultWrapper<BreedModel[]>.ValidationError(validationResult); 
+                return ResultWrapper<BreedModel[]>.ValidationError(validationResult);
             }
 
             var breeds = (await catService.GetBreeds(searchTerm))
                 .OrderBy(x => x.Name.ToLower().StartsWith(searchTerm.ToLower()) ? 1 : 2)
                 .ToArray();
 
-            return breeds.Length == 0 
-                ? ResultWrapper<BreedModel[]>.NotFound 
-                : ResultWrapper<BreedModel[]>.Success(mapper.Map(breeds));
+            return breeds.Length == 0
+                ? ResultWrapper<BreedModel[]>.NotFound
+                : ResultWrapper<BreedModel[]>.Success(new BreedMapper().Map(breeds));
         }
     }
 }

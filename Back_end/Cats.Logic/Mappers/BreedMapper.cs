@@ -1,11 +1,10 @@
-﻿using Cats.Logic.Mappers.Interfaces;
-using Cats.Logic.Models;
+﻿using Cats.Logic.Models;
 using Cats.Service.Entities;
 using System.Linq;
 
 namespace Cats.Logic.Mappers
 {
-    public class BreedMapper : IBreedMapper
+    public class BreedMapper
     {
         public BreedModel[] Map(Breed[] breeds)
         {
@@ -38,6 +37,6 @@ namespace Cats.Logic.Mappers
             }).ToArray();
         }
 
-        private static bool? MapIntToBool(int? input) => input == null ? (bool?) null : input == 1;
+        private static bool? MapIntToBool(int? input) => input == null ? (bool?)null : input == 1;
     }
 }
