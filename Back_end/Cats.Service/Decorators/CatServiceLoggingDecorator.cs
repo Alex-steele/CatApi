@@ -28,5 +28,17 @@ namespace Cats.Service.Decorators
 
             return breeds;
         }
+
+        public async Task<string[]> GetImageUrls(string id)
+        {
+            var sw = Stopwatch.StartNew();
+            var urls = await innerService.GetImageUrls(id);
+            sw.Stop();
+            var elapsedMillis = sw.ElapsedMilliseconds;
+
+            logger.Information($"Attempted to retrieve urls by id '{id}' - Elapsed ms: {elapsedMillis}");
+
+            return urls;
+        }
     }
 }

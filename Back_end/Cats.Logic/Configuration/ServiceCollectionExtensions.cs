@@ -16,6 +16,7 @@ namespace Cats.Logic.Configuration
             services.AddTransient<IGetBreedsQuery, GetBreedsQuery>();
             services.Decorate<IGetBreedsQuery>((inner, provider) =>
                 new GetBreedsQueryLoggingDecorator(inner, Log.Logger));
+            services.AddTransient<IGetImageUrlsQuery, GetImageUrlsQuery>();
 
             return services;
         }

@@ -1,4 +1,5 @@
-﻿using Cats.Service.Entities;
+﻿using System.Linq;
+using Cats.Service.Entities;
 using Cats.Service.Services.Interfaces;
 using Microsoft.Extensions.Configuration;
 using System.Threading.Tasks;
@@ -27,6 +28,19 @@ namespace Cats.Service.Services
         {
             return await client.GetAndDeserializeAsync<Breed[]>(configRoot.GetConnectionString("BreedSearchUrl") + searchTerm)
                    ?? new Breed[0];
+        }
+
+        /// <summary>
+        /// Gets image urls by id
+        /// </summary>
+        /// <param name="id">Breed id</param>
+        /// <returns>Array of image urls</returns>
+        public async Task<string[]> GetImageUrls(string id)
+        {
+            return (await client.GetAndDeserializeAsync<CatImage[]>(configRoot.GetConnectionString("ImageUrl") + id))
+                   ?.Select(x => x.Url)
+                   .ToArray()
+                   ?? new string[0];
         }
     }
 }
