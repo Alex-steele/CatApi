@@ -1,0 +1,32 @@
+<div class="py-5 bg-light" *ngIf="breed">
+    <div class="container">
+      <div class="card shadow">
+        <div class="card-body">
+          <img *ngIf="imageUrls && imageUrls[0]" src="{{imageUrls[0]}}" width="100%">
+            <h3 class="card-text mt-3">{{breed.name}}</h3>
+            <p class="card-text">{{breed.description}}</p>
+            <div *ngIf="seeMore">
+              <p class="card-text" *ngIf="breed.weight">Weight: {{breed.weight}} kg</p>
+              <p class="card-text" *ngIf="breed.temperament">Temperament: {{breed.temperament}}</p>
+              <p class="card-text" *ngIf="breed.origin">Origin: {{breed.origin}}</p>
+              <p class="card-text" *ngIf="breed.lifeSpan">Lifespan: {{breed.lifeSpan}}</p>
+              <p class="card-text" *ngIf="breed.affectionLevel">Affection Level: {{breed.affectionLevel}}/5</p>
+              <p class="card-text" *ngIf="breed.childFriendly">Child Friendly: {{breed.childFriendly}}/5</p>
+              <p class="card-text" *ngIf="breed.dogFriendly">Dog Friendly: {{breed.dogFriendly}}/5</p>
+              <p class="card-text" *ngIf="breed.energyLevel">Energy Level: {{breed.energyLevel}}/5</p>
+              <p class="card-text" *ngIf="breed.grooming">Grooming: {{breed.grooming}}/5</p>
+              <p class="card-text" *ngIf="breed.healthIssues">Health Issues: {{breed.healthIssues}}/5</p>
+              <p class="card-text" *ngIf="breed.intelligence">Intelligence: {{breed.intelligence}}/5</p>
+              <p class="card-text" *ngIf="breed.sheddingLevel">Shedding Level: {{breed.sheddingLevel}}/5</p>
+              <p class="card-text" *ngIf="breed.socialNeeds">Social Needs: {{breed.socialNeeds}}/5</p>
+              <p class="card-text" *ngIf="breed.vocalisation">Vocalisation: {{breed.vocalisation}}/5</p>
+            </div>
+            <div class="d-flex">
+              <div class="btn-group">
+                  <button type="button" class="btn btn-sm btn-outline-secondary" (click)="activateSeeMore()">{{seeMore ? "See less" : "See more"}}</button>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

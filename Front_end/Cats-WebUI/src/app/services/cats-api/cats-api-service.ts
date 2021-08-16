@@ -9,12 +9,19 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class BreedService {
-  private apiEndpoint = environment.apiEndpoint;
+  private breedsEndpoint = environment.breedsEndpoint;
+  private imagesEndpoint = environment.imagesEndpoint;
 
   constructor(private http: HttpClient) { }
 
   searchBreeds(term: string): Observable<Breed[]> {
-    return this.http.get<Breed[]>(this.apiEndpoint + term).pipe(
+    return this.http.get<Breed[]>(this.breedsEndpoint + term).pipe(
+      catchError(() => of([]))
+    )
+  }
+
+  getImageUrl(id: string): Observable<string[]> {
+    return this.http.get<string[]>(this.imagesEndpoint + id).pipe(
       catchError(() => of([]))
     )
   }

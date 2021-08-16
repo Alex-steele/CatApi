@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  apiEndpoint: 'https://localhost:44398/cats/'
+  breedsEndpoint: 'https://localhost:44398/cats/breeds/',
+  imagesEndpoint: 'https://localhost:44398/cats/images/'
 };
 
 /*

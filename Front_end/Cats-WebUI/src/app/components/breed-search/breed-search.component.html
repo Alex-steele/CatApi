@@ -1,0 +1,10 @@
+<div class="mb-5 row border border-dark bg-white rounded">
+  <input #catSearch type="text" class="form-control-lg text-center border-0" placeholder="Search breeds" (input)="search(catSearch.value)" maxlength="50">
+  <div class="px-0" *ngFor="let breed of (breeds$ | async).slice(0,10)" >
+    <div type="" class="py-1 clickable" (click)="selectBreed(breed)">{{breed.name}}</div>
+  </div>
+</div>
+
+<breed-display [breed]="selectedBreed" [imageUrls]="selectedImageUrls$ | async"></breed-display>
+
+
