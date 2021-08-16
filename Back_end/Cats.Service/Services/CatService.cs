@@ -1,21 +1,21 @@
-﻿using System.Net.Http;
-using System.Text.Json;
-using System.Threading.Tasks;
-using Cats.Service.Entities;
+﻿using Cats.Service.Entities;
 using Cats.Service.Services.Interfaces;
 using Microsoft.Extensions.Configuration;
+using System.Threading.Tasks;
+using Cats.Service.Adapters.Interfaces;
 
 namespace Cats.Service.Services
 {
     public class CatService : ICatService
     {
-        private static readonly HttpClient Client = new HttpClient();
         private readonly IConfigurationRoot configRoot;
+        private readonly IHttpClient client;
 
-        public CatService(IConfiguration configRoot)
+        public CatService(IHttpClient client, IConfiguration configRoot)
         {
-            this.configRoot = (IConfigurationRoot) configRoot;
-            Client.DefaultRequestHeaders.Add("x-api-key", this.configRoot["Keys:ApiKey"]);
+            this.configRoot = (IConfigurationRoot)configRoot;
+            this.client = client;
+            client.AddDefaultRequestHeader("x-api-key", configRoot["Keys:ApiKey"]);
         }
 
         /// <summary>
@@ -25,10 +25,8 @@ namespace Cats.Service.Services
         /// <returns>All breeds containing the search term</returns>
         public async Task<Breed[]> GetBreeds(string searchTerm)
         {
-            var serializedBreeds = await Client.GetStreamAsync(configRoot.GetConnectionString("BreedSearchUrl") + searchTerm);
-            var breeds = await JsonSerializer.DeserializeAsync<Breed[]>(serializedBreeds);
-
-            return breeds;
+            return await client.GetAndDeserializeAsync<Breed[]>(configRoot.GetConnectionString("BreedSearchUrl") + searchTerm)
+                   ?? new Breed[0];
         }
     }
 }

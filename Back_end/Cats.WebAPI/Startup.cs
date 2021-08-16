@@ -24,6 +24,8 @@ namespace Cats.WebAPI
         {
             services.AddControllers();
 
+            services.AddHttpClient();
+
             services.AddSwaggerGen(o =>
             {
                 var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
