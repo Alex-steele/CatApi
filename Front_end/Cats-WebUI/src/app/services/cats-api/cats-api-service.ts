@@ -8,7 +8,7 @@ import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class BreedService {
+export class CatsApiService {
   private breedsEndpoint = environment.breedsEndpoint;
   private imagesEndpoint = environment.imagesEndpoint;
 

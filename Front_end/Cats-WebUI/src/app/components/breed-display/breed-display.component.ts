@@ -7,7 +7,7 @@ import { Breed } from "src/app/models/breed";
 })
 export class BreedDisplayComponent implements OnChanges {
     @Input() breed: Breed;
-    @Input() imageUrls: Breed;
+    @Input() imageUrls: string[];
     seeMore: boolean = false;
 
     activateSeeMore() {

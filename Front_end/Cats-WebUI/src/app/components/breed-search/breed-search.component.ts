@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { Observable, of, Subject } from "rxjs";
 import { Breed } from "../../models/breed";
-import { BreedService } from "../../services/cats-api/cats-api-service";
+import { CatsApiService } from "../../services/cats-api/cats-api-service";
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 
 @Component({
@@ -15,14 +15,14 @@ export class BreedSearchComponent implements OnInit {
     selectedBreed!: Breed;
     private searchTerms = new Subject<string>();
 
-    constructor(private breedService: BreedService){}
+    constructor(private catsApiService: CatsApiService){}
 
     ngOnInit(): void {
         this.breeds$ = this.searchTerms.pipe(
             debounceTime(300),
             distinctUntilChanged(),
             switchMap((term:string) => {
-                return term ? this.breedService.searchBreeds(term) : of([])
+                return term ? this.catsApiService.searchBreeds(term) : of([])
             })
         );
     }
@@ -33,7 +33,7 @@ export class BreedSearchComponent implements OnInit {
 
     selectBreed(breed: Breed): void {
         this.searchTerms.next("");
-        this.selectedImageUrls$ = this.breedService.getImageUrl(breed.id);
+        this.selectedImageUrls$ = this.catsApiService.getImageUrl(breed.id);
         this.selectedBreed = breed;
     }
 }

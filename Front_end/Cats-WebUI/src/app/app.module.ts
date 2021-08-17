@@ -8,7 +8,6 @@ import { BreedSearchComponent } from './components/breed-search/breed-search.com
 import { HttpClientModule } from '@angular/common/http';
 import { BreedDisplayComponent } from './components/breed-display/breed-display.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,
