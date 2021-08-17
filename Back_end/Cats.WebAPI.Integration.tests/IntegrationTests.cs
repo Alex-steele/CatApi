@@ -42,29 +42,28 @@ namespace Cats.WebAPI.Integration.tests
         }
 
         [Test]
-        public async Task Get_InvalidInput_Returns400()
+        public async Task GetBreeds_NoMatchingBreed_Returns404()
         {
-            var response = await client.GetAsync(new string('a', 51));
+            var response = await client.GetAsync("breeds/someNonExistentBreed");
+            Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.NotFound));
+        }
+
+        [Test]
+        public async Task GetBreeds_InvalidInput_Returns400()
+        {
+            var response = await client.GetAsync("breeds/" + new string('a', 51));
             Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.BadRequest));
         }
 
         [Test]
-        public async Task Get_ValidInput_Returns200()
+        public async Task GetBreeds_ValidInput_Returns200()
         {
-            var response = await client.GetAsync("cat");
+            var response = await client.GetAsync("breeds/cat");
             Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.OK));
         }
 
         [Test]
-        public async Task Get_ValidInput_ReturnsExpectedResult()
-        {
-            var response = await client.GetFromJsonAsync<BreedModel[]>("ragdoll");
-
-            Assert.That(response.First().Name.ToLower(), Is.EqualTo("ragdoll"));
-        }
-
-        [Test]
-        public async Task Error_AppThrowsError_Returns500()
+        public async Task GetBreeds_AppThrowsError_Returns500()
         {
             //Arrange
             const string searchTerm = "Test";
@@ -81,7 +80,53 @@ namespace Cats.WebAPI.Integration.tests
             }).CreateClient();
 
             //Act
-            var response = await testClient.GetAsync(searchTerm);
+            var response = await testClient.GetAsync("breeds/" + searchTerm);
+
+            //Assert
+            Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.InternalServerError));
+        }
+
+        [Test]
+        public async Task GetBreeds_ValidInput_ReturnsExpectedResult()
+        {
+            var response = await client.GetFromJsonAsync<BreedModel[]>("breeds/ragdoll");
+
+            Assert.That(response.First().Name.ToLower(), Is.EqualTo("ragdoll"));
+        }
+
+        [Test]
+        public async Task GetImageUrls_NoUrlsForGivenId_Returns404()
+        {
+            var response = await client.GetAsync("images/someNonExistentImage");
+            Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.NotFound));
+        }
+
+        [Test]
+        public async Task GetImageUrls_ImagesFound_Returns200()
+        {
+            var response = await client.GetAsync("images/mcoo");
+            Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.OK));
+        }
+
+        [Test]
+        public async Task GetImageUrls_AppThrowsError_Returns500()
+        {
+            //Arrange
+            const string id = "Test";
+
+            var fakeGetImageUrlsQuery = A.Fake<IGetImageUrlsQuery>();
+            A.CallTo(() => fakeGetImageUrlsQuery.ExecuteAsync(id)).Throws(new Exception());
+
+            var testClient = factory.WithWebHostBuilder(builder =>
+            {
+                builder.ConfigureTestServices(services =>
+                {
+                    services.AddTransient(s => fakeGetImageUrlsQuery);
+                });
+            }).CreateClient();
+
+            //Act
+            var response = await testClient.GetAsync("images/" + id);
 
             //Assert
             Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.InternalServerError));
